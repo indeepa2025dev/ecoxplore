@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Make a booking enquiry with EcoXplore Adventures – tell us which tour interests you and we'll be in touch within 24 hours." />
+  <title>Book a Tour | EcoXplore Adventures</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🌿</text></svg>" />
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ── Navigation ──────────────────────────────────────── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a class="navbar__logo" href="index.html" aria-label="EcoXplore Adventures home">🌿 Eco<span>Xplore</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-controls="nav-list" aria-expanded="false" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-list" id="nav-list" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="tours.html">Tours</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="booking.html" class="btn btn--primary">Book Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <header class="page-hero" aria-label="Booking page header">
+      <h1>Make a Booking Enquiry</h1>
+      <p>Tell us about your dream adventure. Our team will respond within 24 hours with availability, pricing, and any answers you need.</p>
+    </header>
+
+    <!-- Booking Section -->
+    <section class="booking" aria-labelledby="booking-heading">
+      <div class="booking__wrapper">
+
+        <!-- Contact Info -->
+        <div class="booking__info">
+          <span class="section-eyebrow">Get in Touch</span>
+          <h2 class="section-title" id="booking-heading">We'd Love to Hear From You</h2>
+          <p>Whether you're ready to book or still exploring options, our adventure specialists are here to help you plan the perfect eco-trip.</p>
+
+          <div class="booking__contact">
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">📧</div>
+              <div>
+                <strong>Email Us</strong>
+                <span><a href="mailto:hello@ecoxplore.com" style="color:var(--canopy)">hello@ecoxplore.com</a></span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">📞</div>
+              <div>
+                <strong>Call Us</strong>
+                <span><a href="tel:+441234567890" style="color:var(--canopy)">+44 1234 567 890</a></span>
+                <span style="font-size:.78rem; color:var(--stone)">Mon–Fri, 9am–6pm GMT</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">⏱</div>
+              <div>
+                <strong>Response Time</strong>
+                <span>We aim to reply within 24 hours on business days.</span>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon" aria-hidden="true">🔒</div>
+              <div>
+                <strong>Privacy</strong>
+                <span>Your data is never sold or shared with third parties.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trust badges -->
+          <div style="margin-top:2.5rem; padding:1.5rem; background:var(--white); border-radius:16px; box-shadow:var(--shadow);">
+            <h3 style="font-family:var(--ff-display); font-size:1rem; color:var(--forest); margin-bottom:1rem;">Why Book With EcoXplore?</h3>
+            <ul class="includes-list">
+              <li>No booking fee — pay only when you confirm</li>
+              <li>Free cancellation up to 30 days before departure</li>
+              <li>All tours are fully carbon offset</li>
+              <li>24/7 in-tour emergency support</li>
+              <li>Small-group sizes guaranteed</li>
+              <li>ATOL & ABTA protected bookings</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Form -->
+        <div class="form-card">
+          <h3>Enquiry Form</h3>
+          <p style="font-size:.85rem; color:var(--stone); margin-bottom:1.5rem;">Fields marked with <abbr title="required">*</abbr> are required.</p>
+
+          <form id="booking-form" novalidate aria-label="Tour booking enquiry form">
+
+            <!-- Personal Details -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="full-name">Full Name <abbr title="required" aria-label="required">*</abbr></label>
+                <input
+                  type="text"
+                  id="full-name"
+                  name="full-name"
+                  placeholder="Jane Smith"
+                  autocomplete="name"
+                  aria-required="true"
+                  aria-describedby="full-name-err"
+                />
+                <span class="error-msg" id="full-name-err" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address <abbr title="required" aria-label="required">*</abbr></label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="jane@example.com"
+                  autocomplete="email"
+                  aria-required="true"
+                  aria-describedby="email-err"
+                />
+                <span class="error-msg" id="email-err" role="alert"></span>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  placeholder="+44 7700 900000"
+                  autocomplete="tel"
+                  aria-describedby="phone-err"
+                />
+                <span class="error-msg" id="phone-err" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="guests">Number of Guests <abbr title="required" aria-label="required">*</abbr></label>
+                <input
+                  type="number"
+                  id="guests"
+                  name="guests"
+                  min="1"
+                  max="20"
+                  placeholder="2"
+                  aria-required="true"
+                  aria-describedby="guests-err"
+                />
+                <span class="error-msg" id="guests-err" role="alert"></span>
+              </div>
+            </div>
+
+            <!-- Tour Selection -->
+            <div class="form-group">
+              <label for="tour">Preferred Tour Package <abbr title="required" aria-label="required">*</abbr></label>
+              <select id="tour" name="tour" aria-required="true" aria-describedby="tour-err">
+                <option value="">— Select a tour —</option>
+                <optgroup label="🥾 Hiking">
+                  <option value="mountain-ridge">Mountain Ridge Hike (5 Days) – $899pp</option>
+                  <option value="highland-trail">Highland Wilderness Trail (3 Days) – $499pp</option>
+                </optgroup>
+                <optgroup label="🛶 River Rafting">
+                  <option value="river-raft">Rainforest River Raft (4 Days) – $749pp</option>
+                  <option value="canyon-descent">Canyon Descent (2 Days) – $599pp</option>
+                </optgroup>
+                <optgroup label="🚵 Cycling">
+                  <option value="coastal-cycling">Coastal Cycling Loop (3 Days) – $549pp</option>
+                </optgroup>
+                <optgroup label="⛺ Camping">
+                  <option value="wilderness-camp">Dark Sky Wilderness Camp (3 Days) – $449pp</option>
+                </optgroup>
+                <option value="unsure">Not sure yet — please advise</option>
+              </select>
+              <span class="error-msg" id="tour-err" role="alert"></span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="date">Preferred Start Date <abbr title="required" aria-label="required">*</abbr></label>
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  aria-required="true"
+                  aria-describedby="date-err"
+                />
+                <span class="error-msg" id="date-err" role="alert"></span>
+              </div>
+              <div class="form-group">
+                <label for="flexibility">Date Flexibility</label>
+                <select id="flexibility" name="flexibility">
+                  <option value="">— Select flexibility —</option>
+                  <option value="exact">Exact date only</option>
+                  <option value="week">± 1 week</option>
+                  <option value="month">± 1 month</option>
+                  <option value="flexible">Fully flexible</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Fitness & Requirements -->
+            <div class="form-group">
+              <label for="fitness">Fitness Level</label>
+              <select id="fitness" name="fitness">
+                <option value="">— Select fitness level —</option>
+                <option value="beginner">Beginner – I rarely do outdoor activities</option>
+                <option value="moderate">Moderate – I walk / cycle regularly</option>
+                <option value="fit">Fit – I hike and train regularly</option>
+                <option value="athlete">Athletic – I'm a seasoned outdoor adventurer</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Additional Notes or Questions</label>
+              <textarea
+                id="notes"
+                name="notes"
+                placeholder="Tell us about any dietary requirements, accessibility needs, special occasions, or questions you have…"
+                aria-describedby="notes-err"
+              ></textarea>
+              <span class="error-msg" id="notes-err" role="alert"></span>
+            </div>
+
+            <!-- How did you hear about us -->
+            <div class="form-group">
+              <label for="referral">How Did You Hear About Us?</label>
+              <select id="referral" name="referral">
+                <option value="">— Select —</option>
+                <option value="google">Google / Search engine</option>
+                <option value="social">Social media</option>
+                <option value="friend">Friend or family recommendation</option>
+                <option value="press">Press / magazine article</option>
+                <option value="returning">Returning guest</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <!-- Consent -->
+            <div class="form-group" style="flex-direction:row; align-items:flex-start; gap:.75rem;">
+              <input
+                type="checkbox"
+                id="consent"
+                name="consent"
+                style="width:18px; height:18px; margin-top:2px; accent-color:var(--moss); flex-shrink:0;"
+                aria-describedby="consent-err"
+              />
+              <label for="consent" style="font-size:.85rem; font-weight:400; color:var(--stone); cursor:pointer;">
+                I agree to EcoXplore Adventures contacting me about my enquiry. My data will be handled in accordance with the <a href="#" style="color:var(--canopy); text-decoration:underline;">Privacy Policy</a>. <abbr title="required" aria-label="required">*</abbr>
+              </label>
+            </div>
+            <span class="error-msg" id="consent-err" role="alert" style="display:none; font-size:.78rem; color:#dc2626; margin-top:-.75rem; margin-bottom:1rem;"></span>
+
+            <button type="submit" class="btn btn--primary" style="width:100%; justify-content:center; font-size:1rem; padding:1rem 2rem;">
+              Send Enquiry
+            </button>
+
+            <div class="form-success" id="form-success" tabindex="-1" aria-live="polite">
+              ✅ Thank you! Your enquiry has been sent. We'll be in touch within 24 hours.
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section style="padding:var(--section-pad); background:var(--cream);" aria-labelledby="faq-heading">
+      <div class="container" style="max-width:800px;">
+        <div class="section-header section-header--center animate-fadeup">
+          <span class="section-eyebrow">Common Questions</span>
+          <h2 class="section-title" id="faq-heading">Before You Book</h2>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:1.25rem; margin-top:2rem;">
+
+          <details style="background:var(--white); border-radius:12px; padding:1.25rem 1.5rem; box-shadow:var(--shadow);" class="animate-fadeup">
+            <summary style="font-family:var(--ff-display); font-size:1.05rem; color:var(--forest); cursor:pointer; font-weight:700; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+              What is included in the tour price?
+              <span aria-hidden="true" style="font-size:1.25rem; color:var(--moss);">+</span>
+            </summary>
+            <p style="margin-top:1rem; color:var(--stone); line-height:1.7;">All tour prices include a certified guide, all meals from the first dinner to the final breakfast, all specialist equipment, accommodation (eco-camp or eco-lodge depending on tour), and a carbon offset certificate. Flights, travel insurance, and personal spending money are not included.</p>
+          </details>
+
+          <details style="background:var(--white); border-radius:12px; padding:1.25rem 1.5rem; box-shadow:var(--shadow);" class="animate-fadeup">
+            <summary style="font-family:var(--ff-display); font-size:1.05rem; color:var(--forest); cursor:pointer; font-weight:700; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+              What is your cancellation policy?
+              <span aria-hidden="true" style="font-size:1.25rem; color:var(--moss);">+</span>
+            </summary>
+            <p style="margin-top:1rem; color:var(--stone); line-height:1.7;">We offer free cancellation up to 30 days before your departure date. Cancellations between 15–30 days prior incur a 25% fee. Within 14 days, the full tour cost is non-refundable. We strongly recommend travel insurance to cover unexpected cancellations.</p>
+          </details>
+
+          <details style="background:var(--white); border-radius:12px; padding:1.25rem 1.5rem; box-shadow:var(--shadow);" class="animate-fadeup">
+            <summary style="font-family:var(--ff-display); font-size:1.05rem; color:var(--forest); cursor:pointer; font-weight:700; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+              Are these tours suitable for beginners?
+              <span aria-hidden="true" style="font-size:1.25rem; color:var(--moss);">+</span>
+            </summary>
+            <p style="margin-top:1rem; color:var(--stone); line-height:1.7;">Yes — many of our tours are designed for first-timers. The Highland Wilderness Trail, Coastal Cycling Loop, and Dark Sky Wilderness Camp are all suitable for beginners. Each tour listing clearly displays the difficulty level. If you're unsure, just ask us in your enquiry.</p>
+          </details>
+
+          <details style="background:var(--white); border-radius:12px; padding:1.25rem 1.5rem; box-shadow:var(--shadow);" class="animate-fadeup">
+            <summary style="font-family:var(--ff-display); font-size:1.05rem; color:var(--forest); cursor:pointer; font-weight:700; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+              Can I join as a solo traveller?
+              <span aria-hidden="true" style="font-size:1.25rem; color:var(--moss);">+</span>
+            </summary>
+            <p style="margin-top:1rem; color:var(--stone); line-height:1.7;">Absolutely! Solo travellers are welcome on all tours. You'll be joining a small group of like-minded adventurers. Solo booking doesn't incur a single supplement on most tours — please enquire for details.</p>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="navbar__logo" href="index.html">🌿 Eco<span>Xplore</span></a>
+        <p>Award-winning eco-adventure holidays that celebrate and protect the natural world.</p>
+      </div>
+      <nav class="footer__col" aria-label="Quick links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="tours.html">Tours & Packages</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="booking.html">Book Now</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-label="Tour types">
+        <h4>Adventures</h4>
+        <ul>
+          <li><a href="tours.html#hiking">Hiking</a></li>
+          <li><a href="tours.html#camping">Camping</a></li>
+          <li><a href="tours.html#cycling">Cycling</a></li>
+          <li><a href="tours.html#rafting">River Rafting</a></li>
+        </ul>
+      </nav>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@ecoxplore.com">hello@ecoxplore.com</a></li>
+          <li><a href="tel:+441234567890">+44 1234 567 890</a></li>
+          <li><span style="color:rgba(255,255,255,.55)">Mon–Fri 9am–6pm GMT</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 EcoXplore Adventures. All rights reserved.</p>
+      <div class="footer__social" aria-label="Social media links">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">in</a>
+        <a href="#" aria-label="Twitter / X">𝕏</a>
+        <a href="#" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Auto-select tour from URL parameter
+    const params = new URLSearchParams(window.location.search);
+    const tourParam = params.get('tour');
+    if (tourParam) {
+      const sel = document.getElementById('tour');
+      if (sel) {
+        const opt = sel.querySelector(`option[value="${tourParam}"]`);
+        if (opt) sel.value = tourParam;
+      }
+    }
+
+    // Consent checkbox validation extension
+    const form = document.getElementById('booking-form');
+    const consentBox = document.getElementById('consent');
+    const consentErr = document.getElementById('consent-err');
+
+    if (form) {
+      form.addEventListener('submit', e => {
+        // Consent check added on top of main.js validation
+        if (!consentBox.checked) {
+          consentErr.textContent = 'You must agree to be contacted before submitting.';
+          consentErr.style.display = 'block';
+          e.stopImmediatePropagation();
+          e.preventDefault();
+          consentBox.focus();
+        } else {
+          consentErr.style.display = 'none';
+        }
+      }, true); // capture phase so runs before main.js
+    }
+
+    // FAQ toggle icon
+    document.querySelectorAll('details').forEach(d => {
+      d.addEventListener('toggle', () => {
+        const icon = d.querySelector('summary span[aria-hidden]');
+        if (icon) icon.textContent = d.open ? '−' : '+';
+      });
+    });
+  </script>
+</body>
+</html>

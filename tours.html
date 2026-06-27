@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse EcoXplore Adventures' eco-friendly tour packages – hiking, river rafting, cycling, and camping experiences across breathtaking landscapes." />
+  <title>Tours & Packages | EcoXplore Adventures</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🌿</text></svg>" />
+  <style>
+    /* ── Tour Filter Tabs ─────────────────────────────────── */
+    .filter-bar {
+      display: flex;
+      gap: .75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+    .filter-btn {
+      padding: .5rem 1.25rem;
+      border-radius: 50px;
+      border: 1.5px solid rgba(27,67,50,.2);
+      background: transparent;
+      color: var(--stone);
+      font-family: var(--ff-body);
+      font-size: .85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition), border-color var(--transition);
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--forest);
+      color: var(--white);
+      border-color: var(--forest);
+    }
+    .filter-btn:focus-visible {
+      outline: 3px solid var(--earth);
+      outline-offset: 2px;
+    }
+    .tour-section { display: none; }
+    .tour-section.visible { display: block; }
+
+    /* ── Full Tour Card ───────────────────────────────────── */
+    .tour-full-card {
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      margin-bottom: 2rem;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .tour-full-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(27,67,50,.16);
+    }
+    .tour-full-img {
+      background: linear-gradient(135deg, var(--canopy), var(--moss));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      min-height: 300px;
+    }
+    .tour-full-body { padding: 2rem; }
+    .tour-full-body h2 {
+      font-family: var(--ff-display);
+      font-size: 1.5rem;
+      color: var(--forest);
+      margin-bottom: .5rem;
+    }
+    .tour-full-body .card__meta { margin-top: .5rem; margin-bottom: 1.25rem; }
+    .tour-full-body .tour-desc { color: var(--stone); margin-bottom: 1.25rem; line-height: 1.75; }
+    .tour-highlights { margin-bottom: 1.5rem; }
+    .tour-highlights h4 { font-size: .82rem; font-weight: 700; color: var(--forest); text-transform: uppercase; letter-spacing: .06em; margin-bottom: .6rem; }
+    .tour-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(0,0,0,.06);
+      margin-top: auto;
+    }
+    .difficulty {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      font-size: .78rem;
+      font-weight: 600;
+      padding: .3rem .8rem;
+      border-radius: 50px;
+    }
+    .difficulty--easy   { background: rgba(82,183,136,.15); color: var(--canopy); }
+    .difficulty--medium { background: rgba(201,125,42,.15); color: var(--earth); }
+    .difficulty--hard   { background: rgba(220,38,38,.1);   color: #dc2626; }
+
+    @media (max-width: 768px) {
+      .tour-full-card { grid-template-columns: 1fr; }
+      .tour-full-img { min-height: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <!-- ── Navigation ──────────────────────────────────────── -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar__inner">
+      <a class="navbar__logo" href="index.html" aria-label="EcoXplore Adventures home">🌿 Eco<span>Xplore</span></a>
+      <button class="nav-toggle" id="nav-toggle" aria-controls="nav-list" aria-expanded="false" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-list" id="nav-list" role="list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="tours.html">Tours</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="booking.html" class="btn btn--primary">Book Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main">
+
+    <header class="page-hero" aria-label="Tours and packages page header">
+      <h1>Tours & Packages</h1>
+      <p>Choose your adventure from our range of carefully curated eco-friendly experiences, each designed to thrill and inspire while protecting our planet.</p>
+    </header>
+
+    <!-- All Tours -->
+    <section style="padding:var(--section-pad);" aria-labelledby="all-tours-heading">
+      <div class="container">
+        <div class="section-header section-header--center animate-fadeup">
+          <span class="section-eyebrow">Filter by Activity</span>
+          <h2 class="section-title" id="all-tours-heading">Our Full Range of Experiences</h2>
+          <p class="section-subtitle">All packages include equipment, certified guides, meals, and carbon offset. Prices are per person.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-bar" role="group" aria-label="Filter tours by type">
+          <button class="filter-btn active" data-filter="all">All Tours</button>
+          <button class="filter-btn" data-filter="hiking">🥾 Hiking</button>
+          <button class="filter-btn" data-filter="rafting">🛶 Rafting</button>
+          <button class="filter-btn" data-filter="cycling">🚵 Cycling</button>
+          <button class="filter-btn" data-filter="camping">⛺ Camping</button>
+        </div>
+
+        <!-- ── HIKING TOURS ──────────────────────────────── -->
+        <div class="tour-section visible" data-category="hiking" id="hiking">
+          <h3 class="section-eyebrow" style="margin-bottom:1.5rem; font-size:.85rem;">🥾 Hiking</h3>
+
+          <article class="tour-full-card animate-fadeup" id="mountain-ridge" aria-label="Mountain Ridge Hike package">
+            <div class="tour-full-img" role="img" aria-label="Mountain peaks">🏔️</div>
+            <div class="tour-full-body">
+              <span class="card__tag">Hiking</span>
+              <h2>Mountain Ridge Hike</h2>
+              <div class="card__meta">
+                <span>⏱ 5 Days / 4 Nights</span>
+                <span>👥 Max 10 guests</span>
+                <span>🌟 4.9/5 (127 reviews)</span>
+                <span class="difficulty difficulty--medium">● Moderate</span>
+              </div>
+              <p class="tour-desc">
+                Our flagship hiking expedition traverses 60 km of pristine alpine terrain, cresting three dramatic ridgelines with unobstructed views to the horizon. Guided by certified naturalists, you'll learn to identify native flora and fauna as you ascend through ancient pine forests and open moorland. Nights are spent at exclusive eco-campsites accessible only to foot travellers.
+              </p>
+              <div class="tour-highlights">
+                <h4>What's Included</h4>
+                <ul class="includes-list">
+                  <li>Professional certified mountain guide</li>
+                  <li>All trekking equipment (poles, gaiters, helmet)</li>
+                  <li>4 nights' eco-camping with sleeping gear</li>
+                  <li>All meals: hot breakfasts, packed lunches, campfire dinners</li>
+                  <li>Carbon offset certificate</li>
+                  <li>Wildlife identification booklet</li>
+                  <li>Emergency satellite communicator</li>
+                </ul>
+              </div>
+              <div class="tour-footer">
+                <div class="card__price">
+                  <span class="amount">$899</span>
+                  <span class="per">/ person</span>
+                </div>
+                <a href="booking.html?tour=mountain-ridge" class="btn btn--primary">Book This Tour</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="tour-full-card animate-fadeup" id="highland-trail" aria-label="Highland Wilderness Trail package">
+            <div class="tour-full-img" role="img" aria-label="Highland landscape">🌄</div>
+            <div class="tour-full-body">
+              <span class="card__tag">Hiking</span>
+              <h2>Highland Wilderness Trail</h2>
+              <div class="card__meta">
+                <span>⏱ 3 Days / 2 Nights</span>
+                <span>👥 Max 12 guests</span>
+                <span>🌟 4.8/5 (89 reviews)</span>
+                <span class="difficulty difficulty--easy">● Easy–Moderate</span>
+              </div>
+              <p class="tour-desc">
+                Perfect for first-time trekkers and families, this gentler highland route winds through heather moorland, glacial valleys, and ancient woodland. The emphasis is on mindful walking, wildlife observation, and connecting with the landscape at your own pace. Stays are in cosy eco-lodges with wood-burning stoves.
+              </p>
+              <div class="tour-highlights">
+                <h4>What's Included</h4>
+                <ul class="includes-list">
+                  <li>Experienced local wilderness guide</li>
+                  <li>2 nights in certified eco-lodge</li>
+                  <li>All meals, local produce only</li>
+                  <li>Trekking poles and daypack</li>
+                  <li>Guided bird-watching session</li>
+                  <li>Carbon offset certificate</li>
+                </ul>
+              </div>
+              <div class="tour-footer">
+                <div class="card__price">
+                  <span class="amount">$499</span>
+                  <span class="per">/ person</span>
+                </div>
+                <a href="booking.html?tour=highland-trail" class="btn btn--primary">Book This Tour</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- ── RAFTING TOURS ─────────────────────────────── -->
+        <div class="tour-section visible" data-category="rafting" id="rafting">
+          <h3 class="section-eyebrow" style="margin-bottom:1.5rem; font-size:.85rem;">🛶 River Rafting</h3>
+
+          <article class="tour-full-card animate-fadeup" id="river-raft" aria-label="Rainforest River Raft package">
+            <div class="tour-full-img" role="img" aria-label="River through rainforest">🛶</div>
+            <div class="tour-full-body">
+              <span class="card__tag">River Rafting</span>
+              <h2>Rainforest River Raft</h2>
+              <div class="card__meta">
+                <span>⏱ 4 Days / 3 Nights</span>
+                <span>👥 Max 8 guests</span>
+                <span>🌟 4.8/5 (74 reviews)</span>
+                <span class="difficulty difficulty--medium">● Moderate</span>
+              </div>
+              <p class="tour-desc">
+                Navigate Grade III rapids as the river cuts through one of the world's oldest rainforests. Between rapids, you'll drift past towering ferns, spot river otters and kingfishers, and camp on secluded white-sand banks accessible only by water. Our rafts are inflatable, repair-kit equipped, and 100% PVC-free.
+              </p>
+              <div class="tour-highlights">
+                <h4>What's Included</h4>
+                <ul class="includes-list">
+                  <li>Certified swift-water rescue guide</li>
+                  <li>Raft, paddles, dry bags, wetsuit & helmet</li>
+                  <li>3 nights' riverside eco-camping</li>
+                  <li>All meals cooked over eco-camp stoves</li>
+                  <li>Rainforest ecology guide booklet</li>
+                  <li>Carbon offset certificate</li>
+                </ul>
+              </div>
+              <div class="tour-footer">
+                <div class="card__price">
+                  <span class="amount">$749</span>
+                  <span class="per">/ person</span>
+                </div>
+                <a href="booking.html?tour=river-raft" class="btn btn--primary">Book This Tour</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="tour-full-card animate-fadeup" id="canyon-descent" aria-label="Canyon Descent Raft package">
+            <div class="tour-full-img" role="img" aria-label="Canyon river">🏞️</div>
+            <div class="tour-full-body">
+              <span class="card__tag">River Rafting</span>
+              <h2>Canyon Descent</h2>
+              <div class="card__meta">
+                <span>⏱ 2 Days / 1 Night</span>
+                <span>👥 Max 10 guests</span>
+                <span>🌟 4.9/5 (52 reviews)</span>
+                <span class="difficulty difficulty--hard">● Challenging</span>
+              </div>
+              <p class="tour-desc">
+                For experienced rafters seeking an adrenaline rush, our Canyon Descent plunges you through Grade IV white-water between dramatic sandstone cliffs. This is one of the most visually spectacular river journeys available, and our expert guides have paddled every metre of it hundreds of times.
+              </p>
+              <div class="tour-highlights">
+                <h4>What's Included</h4>
+                <ul class="includes-list">
+                  <li>Senior swift-water guide (Level 4 certified)</li>
+                  <li>Full rafting safety kit including throw bag</li>
+                  <li>1 night cliff-side eco-camp</li>
+                  <li>All meals</li>
+                  <li>Carbon offset certificate</li>
+                  <li>Action camera footage package</li>
+                </ul>
+              </div>
+              <div class="tour-footer">
+                <div class="card__price">
+                  <span class="amount">$599</span>
+                  <span class="per">/ person</span>
+                </div>
+                <a href="booking.html?tour=canyon-descent" class="btn btn--primary">Book This Tour</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- ── CYCLING TOURS ─────────────────────────────── -->
+        <div class="tour-section visible" data-category="cycling" id="cycling">
+          <h3 class="section-eyebrow" style="margin-bottom:1.5rem; font-size:.85rem;">🚵 Cycling</h3>
+
+          <article class="tour-full-card animate-fadeup" id="coastal-cycling" aria-label="Coastal Cycling Loop package">
+            <div class="tour-full-img" role="img" aria-label="Coastal cycling path">🚵</div>
+            <div class="tour-full-body">
+              <span class="card__tag">Cycling</span>
+              <h2>Coastal Cycling Loop</h2>
+              <div class="card__meta">
+                <span>⏱ 3 Days / 2 Nights</span>
+                <span>👥 Max 12 guests</span>
+                <span>🌟 4.7/5 (61 reviews)</span>
+                <span class="difficulty difficulty--easy">● Easy</span>
+              </div>
+              <p class="tour-desc">
+                Pedal at a leisurely pace along 120 km of breathtaking coastline, passing through fishing villages, sea-cave viewpoints, and pristine tidal beaches. Ideal for all fitness levels, the route is predominantly flat with a few gentle climbs rewarded by spectacular ocean panoramas. Electric assist bikes are available on request.
+              </p>
+              <div class="tour-highlights">
+                <h4>What's Included</h4>
+                <ul class="includes-list">
+                  <li>Quality hybrid or e-bike with helmet</li>
+                  <li>Certified cycling guide</li>
+                  <li>2 nights in eco-friendly coastal B&B</li>
+                  <li>Daily breakfasts and packed lunches</li>
+                  <li>Support vehicle with luggage transfer</li>
+                  <li>Route maps and GPX files</li>
+                  <li>Carbon offset certificate</li>
+                </ul>
+              </div>
+              <div class="tour-footer">
+                <div class="card__price">
+                  <span class="amount">$549</span>
+                  <span class="per">/ person</span>
+                </div>
+                <a href="booking.html?tour=coastal-cycling" class="btn btn--primary">Book This Tour</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- ── CAMPING TOURS ─────────────────────────────── -->
+        <div class="tour-section visible" data-category="camping" id="camping">
+          <h3 class="section-eyebrow" style="margin-bottom:1.5rem; font-size:.85rem;">⛺ Camping</h3>
+
+          <article class="tour-full-card animate-fadeup" id="wilderness-camp" aria-label="Dark Sky Wilderness Camp package">
+            <div class="tour-full-img" role="img" aria-label="Camping under stars">⛺</div>
+            <div class="tour-full-body">
+              <span class="card__tag">Camping</span>
+              <h2>Dark Sky Wilderness Camp</h2>
+              <div class="card__meta">
+                <span>⏱ 3 Days / 2 Nights</span>
+                <span>👥 Max 10 guests</span>
+                <span>🌟 5.0/5 (38 reviews)</span>
+                <span class="difficulty difficulty--easy">● Easy</span>
+              </div>
+              <p class="tour-desc">
+                Set deep in a designated Dark Sky Reserve, this immersive camping experience focuses on stillness, stargazing, and deep connection with the natural world. Days are spent on guided nature walks and foraging sessions; nights are spent around the campfire beneath the Milky Way. No phone signal. Pure restoration.
+              </p>
+              <div class="tour-highlights">
+                <h4>What's Included</h4>
+                <ul class="includes-list">
+                  <li>Wilderness guide & certified astronomer</li>
+                  <li>Premium 4-season tent and sleeping system</li>
+                  <li>All meals: locally foraged where possible</li>
+                  <li>Telescope and star maps</li>
+                  <li>Guided foraging walk</li>
+                  <li>Leave No Trace workshop</li>
+                  <li>Carbon offset certificate</li>
+                </ul>
+              </div>
+              <div class="tour-footer">
+                <div class="card__price">
+                  <span class="amount">$449</span>
+                  <span class="per">/ person</span>
+                </div>
+                <a href="booking.html?tour=wilderness-camp" class="btn btn--primary">Book This Tour</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner" aria-labelledby="tours-cta">
+      <div class="container">
+        <h2 id="tours-cta">Not Sure Which Tour Is Right for You?</h2>
+        <p>Send us an enquiry and our team will help match you with the perfect eco-adventure based on your fitness, interests, and dates.</p>
+        <a href="booking.html" class="btn btn--outline">Get Personalised Advice</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ───────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="navbar__logo" href="index.html">🌿 Eco<span>Xplore</span></a>
+        <p>Award-winning eco-adventure holidays that celebrate and protect the natural world.</p>
+      </div>
+      <nav class="footer__col" aria-label="Quick links">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="tours.html">Tours & Packages</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="booking.html">Book Now</a></li>
+        </ul>
+      </nav>
+      <nav class="footer__col" aria-label="Tour types">
+        <h4>Adventures</h4>
+        <ul>
+          <li><a href="tours.html#hiking">Hiking</a></li>
+          <li><a href="tours.html#camping">Camping</a></li>
+          <li><a href="tours.html#cycling">Cycling</a></li>
+          <li><a href="tours.html#rafting">River Rafting</a></li>
+        </ul>
+      </nav>
+      <div class="footer__col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:hello@ecoxplore.com">hello@ecoxplore.com</a></li>
+          <li><a href="tel:+441234567890">+44 1234 567 890</a></li>
+          <li><span style="color:rgba(255,255,255,.55)">Mon–Fri 9am–6pm GMT</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <p>&copy; 2025 EcoXplore Adventures. All rights reserved.</p>
+      <div class="footer__social" aria-label="Social media links">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="Instagram">in</a>
+        <a href="#" aria-label="Twitter / X">𝕏</a>
+        <a href="#" aria-label="YouTube">▶</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Tour filter logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const tourSections = document.querySelectorAll('.tour-section');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed','true');
+
+        const filter = btn.dataset.filter;
+        tourSections.forEach(section => {
+          if (filter === 'all' || section.dataset.category === filter) {
+            section.classList.add('visible');
+          } else {
+            section.classList.remove('visible');
+          }
+        });
+      });
+      btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
+    });
+
+    // Pre-select from URL hash
+    const hash = window.location.hash.slice(1);
+    if (hash) {
+      const target = document.getElementById(hash);
+      if (target) {
+        setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 300);
+        const cat = target.closest('.tour-section')?.dataset.category;
+        if (cat) {
+          const catBtn = document.querySelector(`.filter-btn[data-filter="${cat}"]`);
+          if (catBtn) catBtn.click();
+        }
+      }
+    }
+  </script>
+</body>
+</html>
