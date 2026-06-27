@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🌿</text></svg>" />
   <style>
-    /* ── Tour Filter Tabs ─────────────────────────────────── */
+
     .filter-bar {
       display: flex;
       gap: .75rem;
@@ -41,7 +41,6 @@
     .tour-section { display: none; }
     .tour-section.visible { display: block; }
 
-    /* ── Full Tour Card ───────────────────────────────────── */
     .tour-full-card {
       background: var(--white);
       border-radius: 20px;
@@ -58,10 +57,9 @@
     }
     .tour-full-img {
       background: linear-gradient(135deg, var(--canopy), var(--moss));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 6rem;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       min-height: 300px;
     }
     .tour-full-body { padding: 2rem; }
@@ -108,7 +106,6 @@
 
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- ── Navigation ──────────────────────────────────────── -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="navbar__inner">
       <a class="navbar__logo" href="index.html" aria-label="EcoXplore Adventures home">🌿 Eco<span>Xplore</span></a>
@@ -132,7 +129,6 @@
       <p>Choose your adventure from our range of carefully curated eco-friendly experiences, each designed to thrill and inspire while protecting our planet.</p>
     </header>
 
-    <!-- All Tours -->
     <section style="padding:var(--section-pad);" aria-labelledby="all-tours-heading">
       <div class="container">
         <div class="section-header section-header--center animate-fadeup">
@@ -141,7 +137,6 @@
           <p class="section-subtitle">All packages include equipment, certified guides, meals, and carbon offset. Prices are per person.</p>
         </div>
 
-        <!-- Filter Buttons -->
         <div class="filter-bar" role="group" aria-label="Filter tours by type">
           <button class="filter-btn active" data-filter="all">All Tours</button>
           <button class="filter-btn" data-filter="hiking">🥾 Hiking</button>
@@ -150,12 +145,11 @@
           <button class="filter-btn" data-filter="camping">⛺ Camping</button>
         </div>
 
-        <!-- ── HIKING TOURS ──────────────────────────────── -->
         <div class="tour-section visible" data-category="hiking" id="hiking">
           <h3 class="section-eyebrow" style="margin-bottom:1.5rem; font-size:.85rem;">🥾 Hiking</h3>
 
           <article class="tour-full-card animate-fadeup" id="mountain-ridge" aria-label="Mountain Ridge Hike package">
-            <div class="tour-full-img" role="img" aria-label="Mountain peaks">🏔️</div>
+            <img class="tour-full-img" src="Images/eco_trekking_hero.png" alt="Hikers climbing through a misty rainforest mountain trail" />
             <div class="tour-full-body">
               <span class="card__tag">Hiking</span>
               <h2>Mountain Ridge Hike</h2>
@@ -191,7 +185,7 @@
           </article>
 
           <article class="tour-full-card animate-fadeup" id="highland-trail" aria-label="Highland Wilderness Trail package">
-            <div class="tour-full-img" role="img" aria-label="Highland landscape">🌄</div>
+            <img class="tour-full-img" src="Images/eco_trekking_hero.png" alt="Green highland trail surrounded by forest and mountain ridges" />
             <div class="tour-full-body">
               <span class="card__tag">Hiking</span>
               <h2>Highland Wilderness Trail</h2>
@@ -226,12 +220,11 @@
           </article>
         </div>
 
-        <!-- ── RAFTING TOURS ─────────────────────────────── -->
         <div class="tour-section visible" data-category="rafting" id="rafting">
           <h3 class="section-eyebrow" style="margin-bottom:1.5rem; font-size:.85rem;">🛶 River Rafting</h3>
 
           <article class="tour-full-card animate-fadeup" id="river-raft" aria-label="Rainforest River Raft package">
-            <div class="tour-full-img" role="img" aria-label="River through rainforest">🛶</div>
+            <img class="tour-full-img" src="Images/wild_water_rafting.png" alt="White water rafting through a tropical rainforest river" />
             <div class="tour-full-body">
               <span class="card__tag">River Rafting</span>
               <h2>Rainforest River Raft</h2>
@@ -266,7 +259,7 @@
           </article>
 
           <article class="tour-full-card animate-fadeup" id="canyon-descent" aria-label="Canyon Descent Raft package">
-            <div class="tour-full-img" role="img" aria-label="Canyon river">🏞️</div>
+            <img class="tour-full-img" src="Images/wild_water_rafting.png" alt="Rafting team paddling through fast river rapids" />
             <div class="tour-full-body">
               <span class="card__tag">River Rafting</span>
               <h2>Canyon Descent</h2>
@@ -301,12 +294,11 @@
           </article>
         </div>
 
-        <!-- ── CYCLING TOURS ─────────────────────────────── -->
         <div class="tour-section visible" data-category="cycling" id="cycling">
           <h3 class="section-eyebrow" style="margin-bottom:1.5rem; font-size:.85rem;">🚵 Cycling</h3>
 
           <article class="tour-full-card animate-fadeup" id="coastal-cycling" aria-label="Coastal Cycling Loop package">
-            <div class="tour-full-img" role="img" aria-label="Coastal cycling path">🚵</div>
+            <img class="tour-full-img" src="Images/coastal_cycling.jpg" alt="Cyclist riding a coastal path overlooking the ocean" />
             <div class="tour-full-body">
               <span class="card__tag">Cycling</span>
               <h2>Coastal Cycling Loop</h2>
@@ -342,12 +334,11 @@
           </article>
         </div>
 
-        <!-- ── CAMPING TOURS ─────────────────────────────── -->
         <div class="tour-section visible" data-category="camping" id="camping">
           <h3 class="section-eyebrow" style="margin-bottom:1.5rem; font-size:.85rem;">⛺ Camping</h3>
 
           <article class="tour-full-card animate-fadeup" id="wilderness-camp" aria-label="Dark Sky Wilderness Camp package">
-            <div class="tour-full-img" role="img" aria-label="Camping under stars">⛺</div>
+            <img class="tour-full-img" src="Images/eco_camping.png" alt="Eco campsite under a starry night sky" />
             <div class="tour-full-body">
               <span class="card__tag">Camping</span>
               <h2>Dark Sky Wilderness Camp</h2>
@@ -386,7 +377,6 @@
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta-banner" aria-labelledby="tours-cta">
       <div class="container">
         <h2 id="tours-cta">Not Sure Which Tour Is Right for You?</h2>
@@ -397,7 +387,6 @@
 
   </main>
 
-  <!-- ── Footer ───────────────────────────────────────────── -->
   <footer class="footer" role="contentinfo">
     <div class="footer__grid">
       <div class="footer__brand">
@@ -445,7 +434,7 @@
 
   <script src="js/main.js"></script>
   <script>
-    // Tour filter logic
+
     const filterBtns = document.querySelectorAll('.filter-btn');
     const tourSections = document.querySelectorAll('.tour-section');
 
@@ -467,7 +456,6 @@
       btn.setAttribute('aria-pressed', btn.classList.contains('active') ? 'true' : 'false');
     });
 
-    // Pre-select from URL hash
     const hash = window.location.hash.slice(1);
     if (hash) {
       const target = document.getElementById(hash);
