@@ -12,7 +12,6 @@
 
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- ── Navigation ──────────────────────────────────────── -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="navbar__inner">
       <a class="navbar__logo" href="index.html" aria-label="EcoXplore Adventures home">🌿 Eco<span>Xplore</span></a>
@@ -36,11 +35,9 @@
       <p>Tell us about your dream adventure. Our team will respond within 24 hours with availability, pricing, and any answers you need.</p>
     </header>
 
-    <!-- Booking Section -->
     <section class="booking" aria-labelledby="booking-heading">
       <div class="booking__wrapper">
 
-        <!-- Contact Info -->
         <div class="booking__info">
           <span class="section-eyebrow">Get in Touch</span>
           <h2 class="section-title" id="booking-heading">We'd Love to Hear From You</h2>
@@ -78,7 +75,6 @@
             </div>
           </div>
 
-          <!-- Trust badges -->
           <div style="margin-top:2.5rem; padding:1.5rem; background:var(--white); border-radius:16px; box-shadow:var(--shadow);">
             <h3 style="font-family:var(--ff-display); font-size:1rem; color:var(--forest); margin-bottom:1rem;">Why Book With EcoXplore?</h3>
             <ul class="includes-list">
@@ -92,14 +88,12 @@
           </div>
         </div>
 
-        <!-- Form -->
         <div class="form-card">
           <h3>Enquiry Form</h3>
           <p style="font-size:.85rem; color:var(--stone); margin-bottom:1.5rem;">Fields marked with <abbr title="required">*</abbr> are required.</p>
 
           <form id="booking-form" novalidate aria-label="Tour booking enquiry form">
 
-            <!-- Personal Details -->
             <div class="form-row">
               <div class="form-group">
                 <label for="full-name">Full Name <abbr title="required" aria-label="required">*</abbr></label>
@@ -158,7 +152,6 @@
               </div>
             </div>
 
-            <!-- Tour Selection -->
             <div class="form-group">
               <label for="tour">Preferred Tour Package <abbr title="required" aria-label="required">*</abbr></label>
               <select id="tour" name="tour" aria-required="true" aria-describedby="tour-err">
@@ -206,7 +199,6 @@
               </div>
             </div>
 
-            <!-- Fitness & Requirements -->
             <div class="form-group">
               <label for="fitness">Fitness Level</label>
               <select id="fitness" name="fitness">
@@ -229,7 +221,6 @@
               <span class="error-msg" id="notes-err" role="alert"></span>
             </div>
 
-            <!-- How did you hear about us -->
             <div class="form-group">
               <label for="referral">How Did You Hear About Us?</label>
               <select id="referral" name="referral">
@@ -243,7 +234,6 @@
               </select>
             </div>
 
-            <!-- Consent -->
             <div class="form-group" style="flex-direction:row; align-items:flex-start; gap:.75rem;">
               <input
                 type="checkbox"
@@ -272,7 +262,6 @@
       </div>
     </section>
 
-    <!-- FAQ -->
     <section style="padding:var(--section-pad); background:var(--cream);" aria-labelledby="faq-heading">
       <div class="container" style="max-width:800px;">
         <div class="section-header section-header--center animate-fadeup">
@@ -319,7 +308,6 @@
 
   </main>
 
-  <!-- ── Footer ───────────────────────────────────────────── -->
   <footer class="footer" role="contentinfo">
     <div class="footer__grid">
       <div class="footer__brand">
@@ -367,7 +355,7 @@
 
   <script src="js/main.js"></script>
   <script>
-    // Auto-select tour from URL parameter
+
     const params = new URLSearchParams(window.location.search);
     const tourParam = params.get('tour');
     if (tourParam) {
@@ -378,27 +366,6 @@
       }
     }
 
-    // Consent checkbox validation extension
-    const form = document.getElementById('booking-form');
-    const consentBox = document.getElementById('consent');
-    const consentErr = document.getElementById('consent-err');
-
-    if (form) {
-      form.addEventListener('submit', e => {
-        // Consent check added on top of main.js validation
-        if (!consentBox.checked) {
-          consentErr.textContent = 'You must agree to be contacted before submitting.';
-          consentErr.style.display = 'block';
-          e.stopImmediatePropagation();
-          e.preventDefault();
-          consentBox.focus();
-        } else {
-          consentErr.style.display = 'none';
-        }
-      }, true); // capture phase so runs before main.js
-    }
-
-    // FAQ toggle icon
     document.querySelectorAll('details').forEach(d => {
       d.addEventListener('toggle', () => {
         const icon = d.querySelector('summary span[aria-hidden]');
