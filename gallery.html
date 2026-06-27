@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🌿</text></svg>" />
   <style>
-    /* ── Category tabs ────────────────────────────────────── */
+
     .gallery-tabs {
       display: flex;
       gap: .75rem;
@@ -39,7 +39,6 @@
       outline-offset: 2px;
     }
 
-    /* ── Masonry-style grid ───────────────────────────────── */
     .gallery__grid--full {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -47,7 +46,18 @@
       gap: 1rem;
     }
     .gallery__grid--full .gallery__item:nth-child(4n+1) { grid-row: span 2; grid-column: span 2; }
-    .gallery__item { background: var(--canopy); }
+    .gallery__item { background: var(--canopy); position: relative; overflow: hidden; border-radius: 12px; cursor: pointer; }
+    .gallery__item img { width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition), filter var(--transition); }
+    .gallery__item:hover img,
+    .gallery__item:focus-visible img { transform: scale(1.04); filter: saturate(1.08); }
+    .gallery__overlay {
+      position: absolute;
+      inset: auto 0 0;
+      padding: 2.5rem 1rem 1rem;
+      color: var(--white);
+      background: linear-gradient(180deg, transparent, rgba(0,0,0,.72));
+    }
+    .gallery__caption { font-weight: 700; text-shadow: 0 2px 12px rgba(0,0,0,.35); }
     .gallery__item[data-hidden="true"] { display: none; }
 
     @media (max-width: 900px) {
@@ -59,7 +69,6 @@
       .gallery__grid--full .gallery__item:nth-child(4n+1) { grid-column: span 1; grid-row: span 1; }
     }
 
-    /* ── Lightbox counter ────────────────────────────────── */
     .lightbox__counter {
       position: absolute;
       bottom: 1.5rem;
@@ -74,7 +83,6 @@
 
   <a class="skip-link" href="#main">Skip to main content</a>
 
-  <!-- ── Navigation ──────────────────────────────────────── -->
   <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="navbar__inner">
       <a class="navbar__logo" href="index.html" aria-label="EcoXplore Adventures home">🌿 Eco<span>Xplore</span></a>
@@ -106,7 +114,6 @@
           <p class="section-subtitle">Browse by activity type or scroll through all — click any image to view it full size.</p>
         </div>
 
-        <!-- Category Tabs -->
         <div class="gallery-tabs" role="group" aria-label="Filter gallery by category">
           <button class="gallery-tab active" data-gfilter="all">All</button>
           <button class="gallery-tab" data-gfilter="hiking">🥾 Hiking</button>
@@ -116,122 +123,121 @@
           <button class="gallery-tab" data-gfilter="wildlife">🦅 Wildlife</button>
         </div>
 
-        <!-- Gallery Grid -->
         <div class="gallery__grid gallery__grid--full" role="list" aria-label="Adventure photo gallery">
 
-          <div class="gallery__item" data-emoji="🏔️" data-caption="Summit views, Mountain Ridge Hike" data-cat="hiking" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🏔️</div>
+          <div class="gallery__item" data-img="Images/eco_trekking_hero.png" data-caption="Summit views, Mountain Ridge Hike" data-cat="hiking" role="listitem">
+            <img src="Images/eco_trekking_hero.png" alt="Misty mountain trail with hikers" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Summit views, Mountain Ridge Hike</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🛶" data-caption="Grade III rapids, Rainforest River Raft" data-cat="rafting" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🛶</div>
+          <div class="gallery__item" data-img="Images/wild_water_rafting.png" data-caption="Grade III rapids, Rainforest River Raft" data-cat="rafting" role="listitem">
+            <img src="Images/wild_water_rafting.png" alt="Rafting group paddling through rapids" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Grade III rapids, Rainforest River Raft</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🌲" data-caption="Ancient pine forest, Highland Trail" data-cat="hiking" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🌲</div>
+          <div class="gallery__item" data-img="Images/eco_trekking_hero.png" data-caption="Ancient pine forest, Highland Trail" data-cat="hiking" role="listitem">
+            <img src="Images/eco_trekking_hero.png" alt="Dense green forest on a hiking trail" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Ancient pine forest, Highland Trail</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🚵" data-caption="Sea-cliff viewpoint, Coastal Cycling Loop" data-cat="cycling" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🚵</div>
+          <div class="gallery__item" data-img="Images/tropical_beach_sunset.png" data-caption="Sea-cliff viewpoint, Coastal Cycling Loop" data-cat="cycling" role="listitem">
+            <img src="Images/tropical_beach_sunset.png" alt="Sunset coastline beside a cycling route" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Sea-cliff viewpoint, Coastal Cycling Loop</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="⛺" data-caption="Campfire evening, Dark Sky Camp" data-cat="camping" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">⛺</div>
+          <div class="gallery__item" data-img="Images/eco_camping.png" data-caption="Campfire evening, Dark Sky Camp" data-cat="camping" role="listitem">
+            <img src="Images/eco_camping.png" alt="Eco campsite lit at night under stars" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Campfire evening, Dark Sky Camp</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🦅" data-caption="Golden eagle sighting, Highland Trail" data-cat="wildlife" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🦅</div>
+          <div class="gallery__item" data-img="Images/eco_trekking_hero.png" data-caption="Golden eagle sighting, Highland Trail" data-cat="wildlife" role="listitem">
+            <img src="Images/eco_trekking_hero.png" alt="Highland forest habitat for wildlife watching" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Golden eagle sighting, Highland Trail</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🌄" data-caption="Dawn light over the valley" data-cat="hiking" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🌄</div>
+          <div class="gallery__item" data-img="Images/eco_trekking_hero.png" data-caption="Dawn light over the valley" data-cat="hiking" role="listitem">
+            <img src="Images/eco_trekking_hero.png" alt="Morning light over a green mountain valley" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Dawn light over the valley</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🏞️" data-caption="Canyon walls, Canyon Descent" data-cat="rafting" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🏞️</div>
+          <div class="gallery__item" data-img="Images/wild_water_rafting.png" data-caption="Canyon walls, Canyon Descent" data-cat="rafting" role="listitem">
+            <img src="Images/wild_water_rafting.png" alt="Fast river rapids through rocky rainforest terrain" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Canyon walls, Canyon Descent</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🦦" data-caption="River otter spotted mid-raft" data-cat="wildlife" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🦦</div>
+          <div class="gallery__item" data-img="Images/wild_water_rafting.png" data-caption="River otter spotted mid-raft" data-cat="wildlife" role="listitem">
+            <img src="Images/wild_water_rafting.png" alt="Rainforest river habitat seen during rafting" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">River otter spotted mid-raft</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🌊" data-caption="Sea cove, Coastal Cycling Loop" data-cat="cycling" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🌊</div>
+          <div class="gallery__item" data-img="Images/tropical_beach_sunset.png" data-caption="Sea cove, Coastal Cycling Loop" data-cat="cycling" role="listitem">
+            <img src="Images/tropical_beach_sunset.png" alt="Quiet tropical sea cove at sunset" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Sea cove, Coastal Cycling Loop</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="✨" data-caption="Milky Way above basecamp, Dark Sky" data-cat="camping" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">✨</div>
+          <div class="gallery__item" data-img="Images/eco_camping.png" data-caption="Milky Way above basecamp, Dark Sky" data-cat="camping" role="listitem">
+            <img src="Images/eco_camping.png" alt="Starry night sky above eco tents" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Milky Way above basecamp, Dark Sky</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🦌" data-caption="Red deer stag, Highland Trail" data-cat="wildlife" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🦌</div>
+          <div class="gallery__item" data-img="Images/eco_trekking_hero.png" data-caption="Red deer stag, Highland Trail" data-cat="wildlife" role="listitem">
+            <img src="Images/eco_trekking_hero.png" alt="Green mountain forest habitat on the highland trail" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Red deer stag, Highland Trail</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🌿" data-caption="Forest floor foraging session" data-cat="camping" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🌿</div>
+          <div class="gallery__item" data-img="Images/eco_camping.png" data-caption="Forest floor foraging session" data-cat="camping" role="listitem">
+            <img src="Images/eco_camping.png" alt="Forest campsite used for guided nature sessions" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Forest floor foraging session</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🌅" data-caption="Sunset ridge, Mountain Hike day 3" data-cat="hiking" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🌅</div>
+          <div class="gallery__item" data-img="Images/eco_trekking_hero.png" data-caption="Sunset ridge, Mountain Hike day 3" data-cat="hiking" role="listitem">
+            <img src="Images/eco_trekking_hero.png" alt="Mountain hiking ridge surrounded by forest" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Sunset ridge, Mountain Hike day 3</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🐦" data-caption="Kingfisher on the riverbank" data-cat="wildlife" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🐦</div>
+          <div class="gallery__item" data-img="Images/wild_water_rafting.png" data-caption="Kingfisher on the riverbank" data-cat="wildlife" role="listitem">
+            <img src="Images/wild_water_rafting.png" alt="Rainforest riverbank habitat for birdwatching" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Kingfisher on the riverbank</p>
             </div>
           </div>
 
-          <div class="gallery__item" data-emoji="🚴" data-caption="Harbour village stop, Coastal Cycling" data-cat="cycling" role="listitem">
-            <div class="gallery-emoji" aria-hidden="true">🚴</div>
+          <div class="gallery__item" data-img="Images/tropical_beach_sunset.png" data-caption="Harbour village stop, Coastal Cycling" data-cat="cycling" role="listitem">
+            <img src="Images/tropical_beach_sunset.png" alt="Coastal sunset near harbour village cycling stop" loading="lazy" />
             <div class="gallery__overlay">
               <p class="gallery__caption">Harbour village stop, Coastal Cycling</p>
             </div>
           </div>
 
-        </div><!-- /.gallery__grid -->
+        </div>
 
         <p style="text-align:center; margin-top:1.5rem; font-size:.85rem; color:var(--stone);">
           Showing <span id="visible-count">16</span> of 16 photos &mdash; new photos added after every tour
@@ -240,7 +246,6 @@
       </div>
     </section>
 
-    <!-- Lightbox -->
     <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" aria-hidden="true">
       <button class="lightbox__close" id="lb-close" aria-label="Close image viewer">&times;</button>
       <button class="lightbox__nav lightbox__prev" id="lb-prev" aria-label="Previous image">&#8592;</button>
@@ -250,7 +255,6 @@
       <button class="lightbox__nav lightbox__next" id="lb-next" aria-label="Next image">&#8594;</button>
     </div>
 
-    <!-- CTA -->
     <section class="cta-banner" aria-labelledby="gallery-cta">
       <div class="container">
         <h2 id="gallery-cta">Imagine Yourself Here</h2>
@@ -261,7 +265,6 @@
 
   </main>
 
-  <!-- ── Footer ───────────────────────────────────────────── -->
   <footer class="footer" role="contentinfo">
     <div class="footer__grid">
       <div class="footer__brand">
@@ -309,7 +312,7 @@
 
   <script src="js/main.js"></script>
   <script>
-    // Gallery filter
+
     const gTabs = document.querySelectorAll('.gallery-tab');
     const gItems = document.querySelectorAll('.gallery__item');
     const visibleCount = document.getElementById('visible-count');
@@ -333,7 +336,6 @@
       tab.setAttribute('aria-pressed', tab.classList.contains('active') ? 'true' : 'false');
     });
 
-    // Enhanced lightbox with counter
     const lightbox = document.getElementById('lightbox');
     const lbCounter = document.getElementById('lb-counter');
     const lbContent = document.getElementById('lb-content');
@@ -352,7 +354,9 @@
       const visible = getVisibleItems();
       currentIdx = idx;
       const item = visible[idx];
-      lbContent.textContent = item.dataset.emoji || '🏔️';
+      const imageSrc = item.dataset.img || item.querySelector('img')?.getAttribute('src') || '';
+      const caption = item.dataset.caption || '';
+      lbContent.innerHTML = imageSrc ? `<img src="${imageSrc}" alt="${caption}">` : '';
       lbCaption.textContent = item.dataset.caption || '';
       if (lbCounter) lbCounter.textContent = `${idx + 1} / ${visible.length}`;
       lightbox.classList.add('active');
