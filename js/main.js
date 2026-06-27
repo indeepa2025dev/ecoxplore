@@ -21,7 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
       
       requiredInputs.forEach(input => {
         const errorSpan = document.getElementById(`${input.id}-err`);
-        if (!input.value.trim()) {
+        const value = input.value.trim();
+        const isEmpty = !value;
+
+        if (isEmpty) {
           isValid = false;
           input.style.borderColor = '#dc2626';
           if (errorSpan) errorSpan.textContent = 'This field is required.';
@@ -42,6 +45,43 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
+      const guestsInput = document.getElementById('guests');
+      if (guestsInput && guestsInput.value.trim()) {
+        const guests = Number(guestsInput.value);
+        const errorSpan = document.getElementById('guests-err');
+        if (!Number.isInteger(guests) || guests < 1 || guests > 20) {
+          isValid = false;
+          guestsInput.style.borderColor = '#dc2626';
+          if (errorSpan) errorSpan.textContent = 'Please enter a guest count from 1 to 20.';
+        }
+      }
+
+      const dateInput = document.getElementById('date');
+      if (dateInput && dateInput.value) {
+        const selectedDate = new Date(`${dateInput.value}T00:00:00`);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const errorSpan = document.getElementById('date-err');
+        if (selectedDate < today) {
+          isValid = false;
+          dateInput.style.borderColor = '#dc2626';
+          if (errorSpan) errorSpan.textContent = 'Please choose today or a future date.';
+        }
+      }
+
+      const consentBox = document.getElementById('consent');
+      const consentErr = document.getElementById('consent-err');
+      if (consentBox && !consentBox.checked) {
+        isValid = false;
+        if (consentErr) {
+          consentErr.textContent = 'You must agree to be contacted before submitting.';
+          consentErr.style.display = 'block';
+        }
+      } else if (consentErr) {
+        consentErr.textContent = '';
+        consentErr.style.display = 'none';
+      }
+
       if (isValid) {
         const successMessage = document.getElementById('form-success');
         if (successMessage) {
@@ -52,4 +92,11 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  document.querySelectorAll('.stat-value[data-count]').forEach(stat => {
+    const target = Number(stat.dataset.count);
+    const suffix = stat.dataset.suffix || '';
+    if (!Number.isFinite(target)) return;
+    stat.textContent = `${target}${suffix}`;
+  });
 });
